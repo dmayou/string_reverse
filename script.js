@@ -3,10 +3,12 @@
 
 let initialStr = prompt('Enter string to reverse:');
 
-//console.log(checkString(initialStr));
-console.log(toLowerCase(initialStr[0]));
+// console.log(checkString(initialStr));
+// console.log(toLowerCase(initialStr[0]));
 
-function checkString(str) {
+console.log( reverseString( initialStr ));
+
+function reverseString(str) {
   if (str.length === 0 || str.isNull) {
     return null;
   }
@@ -17,21 +19,28 @@ function checkString(str) {
 
   while (i >= 0) {
     if (isLetter(str[i--])) {
-      char[j++] = str[i+1];
+      char[j++] = toLowerCase(str[i+1]);
     }
   }
-  return char;
+  return charArrToStr(char);
 }
 
 function toLowerCase(ch) { // char array
   if (ch >= 'A' && ch <= 'Z') {
-    return (String.fromCharCode(ch.charCodeAt(0) + 32));
+    return ( String.fromCharCode( ch.charCodeAt(0) + 32 ));
   } else {
-    return;
+    return (ch);
   }
-
 }
 
 function isLetter(ch) {
-  return (ch >= 'a' && ch <= 'z');
+  return ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z'));
+}
+
+function charArrToStr(ch) {
+  let str = '';
+  for (let char of ch) {
+    str += char;
+  }
+  return str;
 }
